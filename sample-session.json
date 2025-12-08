@@ -1,0 +1,68 @@
+[
+  {
+    "id": "1765208112497-X8bcsMif73M",
+    "videoId": "X8bcsMif73M",
+    "videoTitle": "Pink Floyd - Comfortably Numb - Guitar Tab | Lesson | Cover | Tutorial",
+    "loopStart": 123.14736898321533,
+    "loopEnd": 166.0047858764038,
+    "speed": 0.8,
+    "loops": [
+      {
+        "id": "1765208117511-1765208112497-X8bcsMif73M",
+        "title": "solo",
+        "note": "",
+        "loopStart": 123.14736898321533,
+        "loopEnd": 166.0047858764038,
+        "speed": 0.8,
+        "savedAt": 1765208117511
+      }
+    ],
+    "lastLoopId": "1765208117511-1765208112497-X8bcsMif73M",
+    "thumbnailUrl": "https://i.ytimg.com/vi/X8bcsMif73M/hqdefault.jpg",
+    "savedAt": 1765208117511
+  },
+  {
+    "id": "1765123725694-hyefrmWZL6s",
+    "videoId": "hyefrmWZL6s",
+    "videoTitle": "Led Zeppelin - Stairway to Heaven - Guitar Tab | Lesson | Cover | Tutorial",
+    "loopStart": 355.53,
+    "loopEnd": 406.26,
+    "speed": 0.8,
+    "loops": [
+      {
+        "id": "1765208046522-1765123725694-hyefrmWZL6s",
+        "title": "solo",
+        "note": "",
+        "loopStart": 355.53,
+        "loopEnd": 406.26,
+        "speed": 0.8,
+        "savedAt": 1765208046522
+      }
+    ],
+    "lastLoopId": "1765208046522-1765123725694-hyefrmWZL6s",
+    "thumbnailUrl": "https://i.ytimg.com/vi/hyefrmWZL6s/hqdefault.jpg",
+    "savedAt": 1765208046522
+  },
+  {
+    "id": "1765203251714-fRIQEDrzSHI",
+    "videoId": "fRIQEDrzSHI",
+    "videoTitle": "Guns N' Roses - November Rain - Guitar Tab | Lesson | Cover | Tutorial",
+    "thumbnailUrl": "https://i.ytimg.com/vi/fRIQEDrzSHI/hqdefault.jpg",
+    "loopStart": 232.77134395117187,
+    "loopEnd": 285.52983203967284,
+    "speed": 0.8,
+    "loops": [
+      {
+        "id": "1765203321560-1765203251714-fRIQEDrzSHI",
+        "title": "solo 1",
+        "note": "",
+        "loopStart": 232.77134395117187,
+        "loopEnd": 285.52983203967284,
+        "speed": 0.8,
+        "savedAt": 1765203321560
+      }
+    ],
+    "lastLoopId": "1765203321560-1765203251714-fRIQEDrzSHI",
+    "savedAt": 1765203710496
+  }
+]
