@@ -882,3 +882,10 @@ button.secondary:hover {
 .loop-list .loop-row:nth-child(3) { animation-delay: 100ms; }
 .loop-list .loop-row:nth-child(4) { animation-delay: 150ms; }
 .loop-list .loop-row:nth-child(5) { animation-delay: 200ms; }
+
+#kofi-button-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin: 0 auto;
+  text-align: center;
+}

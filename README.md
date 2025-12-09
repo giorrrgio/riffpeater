@@ -2,6 +2,10 @@
 
 A YouTube/audio loop player focused on guitar practice. Set precise loop points, automate speed increases, and save sessions/loops locally so you can return to riffs without re-entering timings.
 
+If this app helps your practice sessions and you’d like to support it, you can buy me a coffee on Ko-fi:
+
+<a href='https://ko-fi.com/U7U21PYGKF' target='_blank' id="kofi-button"><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi1.png?v=6' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+
 ## Features
 - Load YouTube videos
 - Set loop start/end by time or current playhead

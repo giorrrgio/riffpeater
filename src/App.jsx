@@ -21,7 +21,7 @@ import {
 } from "./sessions/sessionUtils";
 import { useVideoPlayer } from "./videoPlayer/useVideoPlayer";
 
-const DEFAULT_VIDEO_ID = "s7JLf6P0zcM";
+const DEFAULT_VIDEO_ID = "X8bcsMif73M";
 
 export default function App() {
   const [videoIdInput, setVideoIdInput] = useState(DEFAULT_VIDEO_ID);
