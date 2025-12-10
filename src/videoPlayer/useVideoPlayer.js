@@ -9,7 +9,7 @@ export function useVideoPlayer({
   speedRef,
 }) {
   const [currentVideoId, setCurrentVideoId] = useState(initialVideoId);
-  const [playerKind, setPlayerKind] = useState("youtube");
+  const [playerKind, setPlayerKind] = useState("video");
   const [apiReady, setApiReady] = useState(false);
   const [playerReady, setPlayerReady] = useState(false);
   const [audioSrc, setAudioSrc] = useState(null);
@@ -23,10 +23,10 @@ export function useVideoPlayer({
       setApiReady(true);
       return undefined;
     }
-    const scriptExists = Boolean(document.getElementById("youtube-api-script"));
+    const scriptExists = Boolean(document.getElementById("video-api-script"));
     if (!scriptExists) {
       const tag = document.createElement("script");
-      tag.id = "youtube-api-script";
+      tag.id = "video-api-script";
       tag.src = "https://www.youtube.com/iframe_api";
       tag.async = true;
       document.body.appendChild(tag);
@@ -52,7 +52,7 @@ export function useVideoPlayer({
   }, []);
 
   useEffect(() => {
-    if (playerKind !== "youtube") {
+    if (playerKind !== "video") {
       if (playerRef.current && typeof playerRef.current.destroy === "function") {
         playerRef.current.destroy();
       }

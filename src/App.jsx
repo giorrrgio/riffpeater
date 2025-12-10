@@ -353,7 +353,7 @@ export default function App() {
       return;
     }
     clearAudioSource();
-    setPlayerKind("youtube");
+    setPlayerKind("video");
     setCurrentVideoId(parsed);
     resetLoopState();
   };
@@ -367,7 +367,7 @@ export default function App() {
       return;
     }
     clearAudioSource();
-    setPlayerKind("youtube");
+    setPlayerKind("video");
     setCurrentVideoId(DEFAULT_VIDEO_ID);
     setVideoIdInput(DEFAULT_VIDEO_ID);
   }, [mp3FeatureEnabled, currentVideoId, playerKind, clearAudioSource, setCurrentVideoId, setPlayerKind]);
@@ -457,10 +457,10 @@ export default function App() {
     <div className="app-shell">
       <header className="app-header">
         <div>
-          <p className="eyebrow">Guitar Practice Lab</p>
-          <h1>Youtube Loop Player</h1>
+          <p className="eyebrow">The RiffPeater</p>
+          <h1>The RiffPeater</h1>
         </div>
-        <p>Embed a YouTube video, set precision loops, and automate speed lifts without losing your place.</p>
+        <p>Embed a video, set precision loops, and automate speed lifts without losing your place.</p>
       </header>
 
       <main className="app-grid">

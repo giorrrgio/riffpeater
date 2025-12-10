@@ -1,13 +1,13 @@
-# Guitar Practice Lab - Youtube Loop Player
+# RiffPeater - Video Loop Player
 
-A YouTube/audio loop player focused on guitar practice. Set precise loop points, automate speed increases, and save sessions/loops locally so you can return to riffs without re-entering timings.
+A video/audio loop player focused on guitar practice. Set precise loop points, automate speed increases, and save sessions/loops locally so you can return to riffs without re-entering timings.
 
 If this app helps your practice sessions and you’d like to support it, you can buy me a coffee on Ko-fi:
 
 <a href='https://ko-fi.com/U7U21PYGKF' target='_blank' id="kofi-button"><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi1.png?v=6' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 ## Features
-- Load YouTube videos
+- Load videos
 - Set loop start/end by time or current playhead
 - Automate incremental speed lifts every N loops with a max-speed cap
 - Save multiple sessions with thumbnails and per-loop notes
@@ -25,7 +25,7 @@ npm run dev
 3) Open the provided local URL in your browser.
 
 ## Using the app
-- Enter a YouTube URL/ID, then **Load & Reset** to start fresh.
+- Enter a video URL/ID, then **Load & Reset** to start fresh.
 - Set loop start/end, click **Start Loop**, and adjust speed as needed.
 - In **Speed & Automation**, set how often to increase speed, the increment, and a max speed; automation stops at that cap.
 - Save loops and sessions in **Saved Sessions**; they persist in local storage.

@@ -1,5 +1,5 @@
 {
-  "name": "youtube-loop-player",
+  "name": "riffpeater",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -20,5 +20,5 @@
     "gh-pages": "^5.0.0",
     "vite": "^5.0.0"
   },
-  "homepage": "https://giorrrgio.github.io/youtube-loop-player/"
+  "homepage": "https://giorrrgio.github.io/riffpeater/"
 }

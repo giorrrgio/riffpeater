@@ -19,7 +19,7 @@ export default function VideoPanel({
   return (
     <section className="panel video-panel">
       <div id="player" className="player-placeholder">
-        <p>Loading YouTube player...</p>
+        <p>Loading video player...</p>
       </div>
       <div className="video-controls">
         <label>
@@ -28,7 +28,7 @@ export default function VideoPanel({
             type="text"
             value={videoIdInput}
             onChange={(event) => onVideoIdChange(event.target.value)}
-            placeholder="e.g., https://youtu.be/abc123"
+            placeholder="e.g., video link or ID"
           />
         </label>
         <button className="primary" onClick={onLoadVideo}>
