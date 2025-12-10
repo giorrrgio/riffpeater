@@ -2,8 +2,9 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import VideoPanel from "./components/VideoPanel";
 import SpeedAutomationPanel from "./components/SpeedAutomationPanel";
 import SessionsPanel from "./components/SessionsPanel";
-import { parseVideoId } from "./utils/loopUtils";
+import { normalizeImportedSessions, parseVideoId } from "./utils/loopUtils";
 import { useLooper } from "./looper/useLooper";
+import sampleSessionsData from "../sample-session.json";
 import {
   exportSessionsToFile,
   importSessionsFromFile,
@@ -31,6 +32,7 @@ export default function App() {
   const [loopTitle, setLoopTitle] = useState("");
   const [loopNote, setLoopNote] = useState("");
   const [hydrated, setHydrated] = useState(false);
+  const [showQuickstart, setShowQuickstart] = useState(false);
   const mp3FeatureEnabled = import.meta.env.VITE_ENABLE_MP3 === "true";
 
   const playerRef = useRef(null);
@@ -382,6 +384,36 @@ export default function App() {
     updatePlayerSpeed(parsed);
   };
 
+  const applyImportedSessions = useCallback(
+    (normalized) => {
+      if (!normalized?.length) {
+        return;
+      }
+      const [firstSession] = normalized;
+      clearAudioSource();
+      setPlayerKind("video");
+      resetLoopState();
+      setSessions(normalized);
+      setCurrentSessionId(firstSession.id);
+      setCurrentVideoId(firstSession.videoId);
+      setVideoIdInput(firstSession.videoId);
+      applyLoopRange(firstSession.loopStart, firstSession.loopEnd);
+      setSpeed(firstSession.speed || 1);
+      pendingLoopRef.current = firstSession.lastLoopId || null;
+      setCustomLoopMessage(null);
+    },
+    [applyLoopRange, clearAudioSource, resetLoopState, setCustomLoopMessage, setPlayerKind]
+  );
+
+  const handleImportSampleSession = useCallback(() => {
+    const normalized = normalizeImportedSessions(sampleSessionsData);
+    if (!normalized.length) {
+      return;
+    }
+    applyImportedSessions(normalized);
+    setShowQuickstart(false);
+  }, [applyImportedSessions]);
+
   const handleExportSessions = () => {
     exportSessionsToFile(sessions);
   };
@@ -404,13 +436,7 @@ export default function App() {
     }
     try {
       const normalized = await importSessionsFromFile(file);
-      if (!normalized.length) {
-        return;
-      }
-      setSessions(normalized);
-      setCurrentSessionId(normalized[0].id);
-      pendingLoopRef.current = normalized[0].lastLoopId || null;
-      resetLoopState();
+      applyImportedSessions(normalized);
       resetImportInput();
     } catch (error) {
       console.error("Failed to import sessions", error);
@@ -461,6 +487,9 @@ export default function App() {
           <h1>The RiffPeater</h1>
         </div>
         <p>Embed a video, set precision loops, and automate speed lifts without losing your place.</p>
+        <button type="button" className="quickstart-link" onClick={() => setShowQuickstart(true)}>
+          Quickstart
+        </button>
       </header>
 
       <main className="app-grid">
@@ -526,6 +555,42 @@ export default function App() {
         />
 
       </main>
+
+      {showQuickstart && (
+        <div className="modal-backdrop" onClick={() => setShowQuickstart(false)}>
+          <div className="modal-card" onClick={(event) => event.stopPropagation()}>
+            <div className="modal-header">
+              <div>
+                <p className="eyebrow">Guided setup</p>
+                <h3>Quickstart</h3>
+              </div>
+              <button type="button" className="secondary" onClick={() => setShowQuickstart(false)}>
+                Close
+              </button>
+            </div>
+            <div className="modal-body">
+              <p className="modal-lede">
+                Sessions keep all loops for a song. Loops store start/end, speed, and an optional note so you can jump
+                right back into practice.
+              </p>
+              <ul className="modal-list">
+                <li>Create one session per song and add loops for solos, riffs, and tricky measures.</li>
+                <li>Use the loop controls to set start/end, then save it to the current session.</li>
+                <li>Automation lets you repeat a loop and nudge the tempo up after each pass.</li>
+                <li>Your sessions stay in this browser, and you can export or import them anytime.</li>
+              </ul>
+            </div>
+            <div className="modal-actions">
+              <button type="button" className="primary" onClick={handleImportSampleSession}>
+                Import sample-session.json
+              </button>
+              <button type="button" className="secondary" onClick={() => setShowQuickstart(false)}>
+                Not now
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
