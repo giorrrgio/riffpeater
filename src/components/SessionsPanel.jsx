@@ -22,7 +22,25 @@ export default function SessionsPanel({
 }) {
   return (
     <section className="panel saved-panel">
-      <h2>Saved Sessions</h2>
+      <div className="panel-heading">
+        <h2>Saved Sessions</h2>
+        <div
+          className="info-trigger"
+          role="button"
+          tabIndex={0}
+          aria-describedby="sessions-info-tooltip"
+          aria-label="Saved sessions info"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="7" x2="12" y2="11" />
+            <line x1="12" y1="15" x2="12" y2="18" />
+          </svg>
+          <p className="info-tooltip" role="tooltip" id="sessions-info-tooltip">
+            Keep every loop, tempo, and note per song so you can jump right back into practice later.
+          </p>
+        </div>
+      </div>
       <p className="panel-note">Store multiple riff setups so you can jump back without re-entering values.</p>
       <div className="session-list">
         {sessions.length === 0 && <p className="panel-note">No sessions saved yet.</p>}
@@ -53,22 +71,46 @@ export default function SessionsPanel({
           );
         })}
       </div>
-      <div className="loop-save-row">
-        <input
-          placeholder="Loop title (e.g., Verse 1)"
-          type="text"
-          value={loopTitle}
-          onChange={(event) => onLoopTitleChange(event.target.value)}
-        />
-        <input
-          placeholder="Note (optional)"
-          type="text"
-          value={loopNote}
-          onChange={(event) => onLoopNoteChange(event.target.value)}
-        />
-        <button className="primary" onClick={onSaveLoop}>
-          Save loop
-        </button>
+      <div className="loop-save-section">
+        <div className="panel-heading panel-heading--dense">
+          <h3>New loop</h3>
+          <div
+            className="info-trigger"
+            role="button"
+            tabIndex={0}
+            aria-describedby="loop-info-tooltip"
+            aria-label="Loop form info"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="7" x2="12" y2="11" />
+              <line x1="12" y1="15" x2="12" y2="18" />
+            </svg>
+            <p className="info-tooltip" role="tooltip" id="loop-info-tooltip">
+              Name the current loop and jot optional context so you can recall the riff or section later.
+            </p>
+          </div>
+        </div>
+        <p className="panel-note panel-note--tight">
+          Capture the start/end markers, tempo, and notes before slipping back into practice.
+        </p>
+        <div className="loop-save-row">
+          <input
+            placeholder="Loop title (e.g., Verse 1)"
+            type="text"
+            value={loopTitle}
+            onChange={(event) => onLoopTitleChange(event.target.value)}
+          />
+          <input
+            placeholder="Note (optional)"
+            type="text"
+            value={loopNote}
+            onChange={(event) => onLoopNoteChange(event.target.value)}
+          />
+          <button className="primary" onClick={onSaveLoop}>
+            Save loop
+          </button>
+        </div>
       </div>
       <div className="loop-list">
         {currentSession?.loops?.length ? (

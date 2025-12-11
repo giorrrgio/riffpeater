@@ -29,7 +29,25 @@ export default function SpeedAutomationPanel({
 }) {
   return (
     <section className="panel controls-panel">
-      <h2>Speed &amp; Automation</h2>
+      <div className="panel-heading">
+        <h2>Speed &amp; Automation</h2>
+        <div
+          className="info-trigger"
+          role="button"
+          tabIndex={0}
+          aria-describedby="speed-info-tooltip"
+          aria-label="Speed and automation info"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="7" x2="12" y2="11" />
+            <line x1="12" y1="15" x2="12" y2="18" />
+          </svg>
+          <p className="info-tooltip" role="tooltip" id="speed-info-tooltip">
+            Adjust playback speed and automation rules so the loop gradually ramps up to your target tempo.
+          </p>
+        </div>
+      </div>
       <div className="control-row">
         <label htmlFor="speed-slider">Playback speed:</label>
         <input

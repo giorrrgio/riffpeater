@@ -18,6 +18,25 @@ export default function VideoPanel({
 }) {
   return (
     <section className="panel video-panel">
+      <div className="panel-heading">
+        <h2>Video &amp; Loop Controls</h2>
+        <div
+          className="info-trigger"
+          role="button"
+          tabIndex={0}
+          aria-describedby="video-info-tooltip"
+          aria-label="Video section info"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="11" />
+            <line x1="12" y1="15" x2="12" y2="18" />
+          </svg>
+          <p className="info-tooltip" role="tooltip" id="video-info-tooltip">
+            Load a YouTube link and lock the start/end loop points before you begin practicing.
+          </p>
+        </div>
+      </div>
       <div id="player" className="player-placeholder">
         <p>Loading video player...</p>
       </div>

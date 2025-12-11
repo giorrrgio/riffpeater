@@ -200,7 +200,7 @@ body::before {
   gap: 20px;
   transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
   min-width: 0;
-  overflow: hidden;
+  overflow: visible;
 }
 
 @media (max-width: 480px) {
@@ -215,22 +215,123 @@ body::before {
   border-color: var(--border-default);
 }
 
-.panel h2 {
+.panel-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.panel-heading h2 {
   margin: 0;
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  padding-left: 14px;
+  position: relative;
 }
 
-.panel h2::before {
+.panel-heading h2::before {
   content: "";
   width: 4px;
   height: 20px;
   background: var(--accent-gradient);
   border-radius: 2px;
+  position: absolute;
+  left: 0;
+  top: 6px;
+}
+
+.panel-heading h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding-left: 12px;
+  position: relative;
+}
+
+.panel-heading h3::before {
+  content: "";
+  width: 4px;
+  height: 16px;
+  background: var(--accent-gradient);
+  border-radius: 2px;
+  position: absolute;
+  left: 0;
+  top: 8px;
+}
+
+.panel-heading--dense {
+  gap: 8px;
+}
+
+.info-trigger {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--accent-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: help;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.info-trigger:hover,
+.info-trigger:focus-visible {
+  border-color: var(--accent-primary);
+  background: rgba(34, 211, 238, 0.15);
+}
+
+.info-trigger svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2.2;
+}
+
+.info-tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translate(-50%, 0);
+  opacity: 0;
+  pointer-events: none;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: rgba(10, 14, 20, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+  min-width: 220px;
+  max-width: 260px;
+  font-size: 0.85rem;
+  text-align: left;
+  color: var(--text-primary);
+  z-index: 10;
+  line-height: 1.4;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.info-trigger:hover .info-tooltip,
+.info-trigger:focus-visible .info-tooltip {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -4px);
+}
+
+.loop-save-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.panel-note--tight {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-family: "JetBrains Mono", monospace;
 }
 
 .video-panel {
