@@ -1,3 +1,5 @@
+import { useTranslation } from "../i18n/LocaleContext";
+
 const DELTA_MIN = 0.05;
 const DELTA_MAX = 0.5;
 const DELTA_STEP = 0.05;
@@ -27,16 +29,18 @@ export default function SpeedAutomationPanel({
   onAutomationStop,
   automationStatus,
 }) {
+  const t = useTranslation();
+
   return (
     <section className="panel controls-panel">
       <div className="panel-heading">
-        <h2>Speed &amp; Automation</h2>
+        <h2>{t("speed.heading")}</h2>
         <div
           className="info-trigger"
           role="button"
           tabIndex={0}
           aria-describedby="speed-info-tooltip"
-          aria-label="Speed and automation info"
+          aria-label={t("speed.infoLabel")}
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <circle cx="12" cy="12" r="10" />
@@ -44,12 +48,12 @@ export default function SpeedAutomationPanel({
             <line x1="12" y1="15" x2="12" y2="18" />
           </svg>
           <p className="info-tooltip" role="tooltip" id="speed-info-tooltip">
-            Adjust playback speed and automation rules so the loop gradually ramps up to your target tempo.
+            {t("speed.tooltip")}
           </p>
         </div>
       </div>
       <div className="control-row">
-        <label htmlFor="speed-slider">Playback speed:</label>
+        <label htmlFor="speed-slider">{t("speed.playbackLabel")}</label>
         <input
           id="speed-slider"
           type="range"
@@ -64,19 +68,19 @@ export default function SpeedAutomationPanel({
       <div className="automation-grid">
         <div>
           <label>
-            Increase speed every
+            {t("speed.increaseEvery")}
             <input
               type="number"
               min="1"
               value={loopsBefore}
               onChange={(event) => onLoopsBeforeChange(Number(event.target.value) || 1)}
             />
-            loops
+            {t("common.loops")}
           </label>
         </div>
         <div>
           <label>
-            Increase by
+            {t("speed.increaseBy")}
             <select
               value={automationDelta}
               onChange={(event) => onAutomationDeltaChange(event.target.value)}
@@ -91,7 +95,7 @@ export default function SpeedAutomationPanel({
         </div>
         <div>
           <label>
-            Max speed
+            {t("speed.maxSpeed")}
             <select
               value={maxSpeed}
               onChange={(event) => onMaxSpeedChange(event.target.value)}
@@ -107,9 +111,9 @@ export default function SpeedAutomationPanel({
       </div>
       <div className="automation-actions">
         <button className="secondary" onClick={onAutomationStart}>
-          Start automation
+          {t("speed.startAutomation")}
         </button>
-        <button onClick={onAutomationStop}>Stop automation</button>
+        <button onClick={onAutomationStop}>{t("speed.stopAutomation")}</button>
         <span>{automationStatus}</span>
       </div>
     </section>

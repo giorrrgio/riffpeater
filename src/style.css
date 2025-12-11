@@ -173,6 +173,51 @@ body::before {
   text-decoration: underline;
 }
 
+.app-footer {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.language-switcher {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.locale-link {
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: inherit;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.locale-link:hover {
+  color: var(--accent-primary);
+  text-decoration: underline;
+}
+
+.locale-link:focus-visible {
+  outline: 1px solid var(--accent-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+  box-shadow: none;
+}
+
+.current-locale {
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
 /* ===== GRID LAYOUT ===== */
 .app-grid {
   display: grid;

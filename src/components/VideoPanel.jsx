@@ -1,3 +1,5 @@
+import { useTranslation } from "../i18n/LocaleContext";
+
 export default function VideoPanel({
   videoIdInput,
   onVideoIdChange,
@@ -16,16 +18,17 @@ export default function VideoPanel({
   audioFileName,
   mp3Enabled,
 }) {
+  const t = useTranslation();
   return (
     <section className="panel video-panel">
       <div className="panel-heading">
-        <h2>Video &amp; Loop Controls</h2>
+        <h2>{t("video.heading")}</h2>
         <div
           className="info-trigger"
           role="button"
           tabIndex={0}
           aria-describedby="video-info-tooltip"
-          aria-label="Video section info"
+          aria-label={t("video.infoLabel")}
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <circle cx="12" cy="12" r="10" />
@@ -33,31 +36,31 @@ export default function VideoPanel({
             <line x1="12" y1="15" x2="12" y2="18" />
           </svg>
           <p className="info-tooltip" role="tooltip" id="video-info-tooltip">
-            Load a YouTube link and lock the start/end loop points before you begin practicing.
+            {t("video.tooltip")}
           </p>
         </div>
       </div>
       <div id="player" className="player-placeholder">
-        <p>Loading video player...</p>
+        <p>{t("video.loading")}</p>
       </div>
       <div className="video-controls">
         <label>
-          Video ID or URL
+          {t("video.labelInput")}
           <input
             type="text"
             value={videoIdInput}
             onChange={(event) => onVideoIdChange(event.target.value)}
-            placeholder="e.g., video link or ID"
+            placeholder={t("video.inputPlaceholder")}
           />
         </label>
         <button className="primary" onClick={onLoadVideo}>
-          Load &amp; Reset
+          {t("video.loadButton")}
         </button>
       </div>
       {mp3Enabled && (
         <div className="upload-row">
           <label className="upload-button">
-            Upload MP3
+            {t("video.uploadButton")}
             <input type="file" accept="audio/mp3,audio/mpeg" onChange={(event) => onUploadAudio(event.target.files?.[0])} />
           </label>
           {audioFileName && <span className="upload-label">{audioFileName}</span>}
@@ -66,34 +69,34 @@ export default function VideoPanel({
       <div className="loop-time-display">
         <div>
           <label>
-            Loop start (hh:mm:ss or seconds)
+            {t("video.loopStart")}
             <input
               value={loopStartInput}
               onChange={(event) => onLoopStartChange(event.target.value)}
               type="text"
-              placeholder="00:00:00"
+              placeholder={t("video.placeholderTime")}
             />
           </label>
-          <button onClick={onSetStartCurrent}>Set from current</button>
+          <button onClick={onSetStartCurrent}>{t("video.setFromCurrent")}</button>
         </div>
         <div>
           <label>
-            Loop end (hh:mm:ss or seconds)
+            {t("video.loopEnd")}
             <input
               value={loopEndInput}
               onChange={(event) => onLoopEndChange(event.target.value)}
               type="text"
-              placeholder="00:00:00"
+              placeholder={t("video.placeholderTime")}
             />
           </label>
-          <button onClick={onSetEndCurrent}>Set from current</button>
+          <button onClick={onSetEndCurrent}>{t("video.setFromCurrent")}</button>
         </div>
       </div>
       <div className="loop-actions">
         <button className="primary" onClick={onToggleLoop}>
-          {loopEnabled ? "Stop Loop" : "Start Loop"}
+          {loopEnabled ? t("video.stopLoop") : t("video.startLoop")}
         </button>
-        <button onClick={onClearLoop}>Clear Loop</button>
+        <button onClick={onClearLoop}>{t("video.clearLoop")}</button>
         <div className="loop-status">{loopStatus}</div>
       </div>
     </section>

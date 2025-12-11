@@ -21,6 +21,8 @@ import {
   removeSessionById,
 } from "./sessions/sessionUtils";
 import { useVideoPlayer } from "./videoPlayer/useVideoPlayer";
+import { useLocale } from "./i18n/LocaleContext";
+import { supportedLocales } from "./i18n/translations";
 
 const DEFAULT_VIDEO_ID = "X8bcsMif73M";
 const SAMPLE_SESSION_QUERY_PARAM = "sampleSession";
@@ -34,6 +36,7 @@ export default function App() {
   const [loopNote, setLoopNote] = useState("");
   const [hydrated, setHydrated] = useState(false);
   const [showQuickstart, setShowQuickstart] = useState(false);
+  const { t, locale, setLocale } = useLocale();
   const mp3FeatureEnabled = import.meta.env.VITE_ENABLE_MP3 === "true";
   const loadSampleFromUrl = useMemo(() => {
     if (typeof window === "undefined") {
@@ -499,13 +502,10 @@ export default function App() {
   return (
     <div className="app-shell">
       <header className="app-header">
-        <div>
-          <p className="eyebrow">The RiffPeater</p>
-          <h1>The RiffPeater</h1>
-        </div>
-        <p>Embed a video, set precision loops, and automate speed lifts without losing your place.</p>
+        <h1>{t("app.brand")}</h1>
+        <p>{t("app.tagline")}</p>
         <button type="button" className="quickstart-link" onClick={() => setShowQuickstart(true)}>
-          Quickstart
+          {t("app.quickstartButton")}
         </button>
       </header>
 
@@ -573,38 +573,68 @@ export default function App() {
 
       </main>
 
+      <footer className="app-footer">
+        <div id="kofi-button-container">
+          <p>{t("kofi.prompt")}</p>
+          <a href="https://ko-fi.com/U7U21PYGKF" target="_blank" rel="noreferrer" id="kofi-button">
+            <img
+              height="36"
+              style={{ border: 0, height: "36px" }}
+              src="https://storage.ko-fi.com/cdn/kofi1.png?v=6"
+              alt={t("kofi.alt")}
+            />
+          </a>
+        </div>
+        <div className="language-switcher">
+          {Object.entries(supportedLocales).map(([code, label], index) => (
+            <span key={code}>
+              {index > 0 && " • "}
+              {code === locale ? (
+                <span className="current-locale">{label}</span>
+              ) : (
+                <button
+                  type="button"
+                  className="locale-link"
+                  onClick={() => setLocale(code)}
+                  aria-label={`Switch to ${label}`}
+                >
+                  {label}
+                </button>
+              )}
+            </span>
+          ))}
+        </div>
+      </footer>
+
       {showQuickstart && (
         <div className="modal-backdrop" onClick={() => setShowQuickstart(false)}>
           <div className="modal-card" onClick={(event) => event.stopPropagation()}>
-            <div className="modal-header">
-              <div>
-                <p className="eyebrow">Guided setup</p>
-                <h3>Quickstart</h3>
-              </div>
-              <button type="button" className="secondary" onClick={() => setShowQuickstart(false)}>
-                Close
-              </button>
-            </div>
-            <div className="modal-body">
-              <p className="modal-lede">
-                Sessions keep all loops for a song. Loops store start/end, speed, and an optional note so you can jump
-                right back into practice.
-              </p>
-              <ul className="modal-list">
-                <li>Create one session per song and add loops for solos, riffs, and tricky measures.</li>
-                <li>Use the loop controls to set start/end, then save it to the current session.</li>
-                <li>Automation lets you repeat a loop and nudge the tempo up after each pass.</li>
-                <li>Your sessions stay in this browser, and you can export or import them anytime.</li>
-              </ul>
-            </div>
-            <div className="modal-actions">
-              <button type="button" className="primary" onClick={handleImportSampleSession}>
-                Import sample-session.json
-              </button>
-              <button type="button" className="secondary" onClick={() => setShowQuickstart(false)}>
-                Not now
-              </button>
-            </div>
+        <div className="modal-header">
+          <div>
+            <p className="eyebrow">{t("app.quickstartGuided")}</p>
+            <h3>{t("app.quickstartTitle")}</h3>
+          </div>
+          <button type="button" className="secondary" onClick={() => setShowQuickstart(false)}>
+            {t("app.close")}
+          </button>
+        </div>
+        <div className="modal-body">
+          <p className="modal-lede">{t("app.quickstartLede")}</p>
+          <ul className="modal-list">
+            <li>{t("app.quickstartList.step1")}</li>
+            <li>{t("app.quickstartList.step2")}</li>
+            <li>{t("app.quickstartList.step3")}</li>
+            <li>{t("app.quickstartList.step4")}</li>
+          </ul>
+        </div>
+        <div className="modal-actions">
+          <button type="button" className="primary" onClick={handleImportSampleSession}>
+            {t("app.quickstartImportSample")}
+          </button>
+          <button type="button" className="secondary" onClick={() => setShowQuickstart(false)}>
+            {t("app.quickstartDecline")}
+          </button>
+        </div>
           </div>
         </div>
       )}
