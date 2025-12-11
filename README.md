@@ -39,6 +39,10 @@ To import it:
 3) Choose `sample-session.json`.
 4) Load the imported session or specific loops from the list.
 
+## Sharing the sample session
+
+Send anyone the app URL with the `sampleSession` query flag (for example `/?sampleSession=true` or `/?sampleSession=1`). Landing on that link automatically imports the included `sample-session.json` data, so the recipient can jump straight into the guided demo without manual steps.
+
 ## Exporting your work
 - Click **Export JSON** in **Saved Sessions** to download your sessions for backup or sharing.
 

@@ -23,6 +23,7 @@ import {
 import { useVideoPlayer } from "./videoPlayer/useVideoPlayer";
 
 const DEFAULT_VIDEO_ID = "X8bcsMif73M";
+const SAMPLE_SESSION_QUERY_PARAM = "sampleSession";
 
 export default function App() {
   const [videoIdInput, setVideoIdInput] = useState(DEFAULT_VIDEO_ID);
@@ -34,6 +35,14 @@ export default function App() {
   const [hydrated, setHydrated] = useState(false);
   const [showQuickstart, setShowQuickstart] = useState(false);
   const mp3FeatureEnabled = import.meta.env.VITE_ENABLE_MP3 === "true";
+  const loadSampleFromUrl = useMemo(() => {
+    if (typeof window === "undefined") {
+      return false;
+    }
+    const value = new URLSearchParams(window.location.search).get(SAMPLE_SESSION_QUERY_PARAM);
+    return value === "1" || value === "true";
+  }, []);
+  const sampleSessionLoadedRef = useRef(false);
 
   const playerRef = useRef(null);
   const audioRef = useRef(null);
@@ -413,6 +422,14 @@ export default function App() {
     applyImportedSessions(normalized);
     setShowQuickstart(false);
   }, [applyImportedSessions]);
+
+  useEffect(() => {
+    if (!hydrated || !loadSampleFromUrl || sampleSessionLoadedRef.current) {
+      return;
+    }
+    handleImportSampleSession();
+    sampleSessionLoadedRef.current = true;
+  }, [hydrated, loadSampleFromUrl, handleImportSampleSession]);
 
   const handleExportSessions = () => {
     exportSessionsToFile(sessions);
