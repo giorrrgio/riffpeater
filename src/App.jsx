@@ -1,10 +1,13 @@
+import { marked } from "marked";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import VideoPanel from "./components/VideoPanel";
 import SpeedAutomationPanel from "./components/SpeedAutomationPanel";
 import SessionsPanel from "./components/SessionsPanel";
+import TutorialModal from "./components/TutorialModal";
 import { normalizeImportedSessions, parseVideoId } from "./utils/loopUtils";
 import { useLooper } from "./looper/useLooper";
 import sampleSessionsData from "../sample-session.json";
+import tutorialContent from "../TUTORIAL.md?raw";
 import {
   exportSessionsToFile,
   importSessionsFromFile,
@@ -36,6 +39,7 @@ export default function App() {
   const [loopNote, setLoopNote] = useState("");
   const [hydrated, setHydrated] = useState(false);
   const [showQuickstart, setShowQuickstart] = useState(false);
+  const [showTutorialModal, setShowTutorialModal] = useState(false);
   const { t, locale, setLocale } = useLocale();
   const mp3FeatureEnabled = import.meta.env.VITE_ENABLE_MP3 === "true";
   const loadSampleFromUrl = useMemo(() => {
@@ -61,6 +65,8 @@ export default function App() {
     () => sessions.find((session) => session.id === currentSessionId) || null,
     [sessions, currentSessionId]
   );
+
+  const tutorialHtml = useMemo(() => marked.parse(tutorialContent || ""), []);
 
   useEffect(() => {
     sessionsRef.current = sessions;
@@ -504,9 +510,18 @@ export default function App() {
       <header className="app-header">
         <h1>{t("app.brand")}</h1>
         <p>{t("app.tagline")}</p>
-        <button type="button" className="quickstart-link" onClick={() => setShowQuickstart(true)}>
-          {t("app.quickstartButton")}
-        </button>
+        <div className="header-actions">
+          <button type="button" className="quickstart-link" onClick={() => setShowQuickstart(true)}>
+            {t("app.quickstartButton")}
+          </button>
+          <button
+            type="button"
+            className="quickstart-link tutorial-link"
+            onClick={() => setShowTutorialModal(true)}
+          >
+            {t("app.tutorialButton")}
+          </button>
+        </div>
       </header>
 
       <main className="app-grid">
@@ -638,6 +653,11 @@ export default function App() {
           </div>
         </div>
       )}
+      <TutorialModal
+        isOpen={showTutorialModal}
+        onClose={() => setShowTutorialModal(false)}
+        content={tutorialHtml}
+      />
     </div>
   );
 }

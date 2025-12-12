@@ -18,6 +18,8 @@ const translations = {
       quickstartImportSample: "Import sample-session.json",
       quickstartDecline: "Not now",
       close: "Close",
+      tutorialButton: "View tutorial",
+      tutorialModalTitle: "Full tutorial",
     },
     language: {
       label: "Language",
@@ -110,6 +112,8 @@ const translations = {
       quickstartImportSample: "Importa sample-session.json",
       quickstartDecline: "Non ora",
       close: "Chiudi",
+      tutorialButton: "Visualizza il tutorial",
+      tutorialModalTitle: "Tutorial completo",
     },
     language: {
       label: "Lingua",
@@ -203,6 +207,8 @@ const translations = {
       quickstartImportSample: "Importer sample-session.json",
       quickstartDecline: "Pas maintenant",
       close: "Fermer",
+      tutorialButton: "Voir le tutoriel",
+      tutorialModalTitle: "Tutoriel complet",
     },
     language: {
       label: "Langue",
@@ -296,6 +302,8 @@ const translations = {
       quickstartImportSample: "sample-session.json importieren",
       quickstartDecline: "Nicht jetzt",
       close: "Schließen",
+      tutorialButton: "Tutorial anzeigen",
+      tutorialModalTitle: "Vollständiges Tutorial",
     },
     language: {
       label: "Sprache",
@@ -389,6 +397,8 @@ const translations = {
       quickstartImportSample: "Importar sample-session.json",
       quickstartDecline: "Ahora no",
       close: "Cerrar",
+      tutorialButton: "Ver tutorial",
+      tutorialModalTitle: "Tutorial completo",
     },
     language: {
       label: "Idioma",
@@ -482,6 +492,8 @@ const translations = {
       quickstartImportSample: "sample-session.json を読み込む",
       quickstartDecline: "今はしない",
       close: "閉じる",
+      tutorialButton: "チュートリアルを見る",
+      tutorialModalTitle: "完全なチュートリアル",
     },
     language: {
       label: "言語",
